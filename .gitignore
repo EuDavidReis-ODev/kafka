@@ -31,3 +31,5 @@ build/
 
 ### VS Code ###
 .vscode/
+microsservico/.mvn/wrapper/maven-wrapper.jar
+apirest-kafka/.mvn/wrapper/maven-wrapper.properties
