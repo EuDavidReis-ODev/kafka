@@ -1,6 +1,7 @@
 # Projeto de Exemplo de Microsserviços com Java Spring Boot e Kafka
 
 Este projeto de exemplo demonstra a implementação de microsserviços utilizando Java Spring Boot e Kafka. Ele consiste em dois subprojetos: um Producer e um Consumer. O Producer funciona como uma API Rest que recebe requisições e as envia para um tópico no Kafka. O Consumer, por sua vez, coleta os eventos da fila Kafka e os processa conforme necessário.
+ Neste projeto também é abordado o uso de containers Docker e do Zookeeper. 
 
 ## Estrutura do Projeto
 
@@ -26,7 +27,7 @@ Antes de usar o Docker Compose, certifique-se de ter o Docker e o Docker Compose
 
 Para iniciar o projeto com Docker Compose, siga os seguintes passos:
 
-1. Navegue até a pasta raiz do projeto onde o arquivo `docker-compose.yml` está localizado. Ou copie e cole o código abaixo em um arquivo `docker-compose.yml`.
+1. Navegue até a pasta raiz do projeto onde o arquivo `docker-compose.yml` está localizado.
 ```yaml
 # Copyright VMware, Inc.
 # SPDX-License-Identifier: APACHE-2.0
@@ -71,6 +72,7 @@ volumes:
    ``` powershell
    docker-compose up -d
    ```
+   Note que a flag "-d" libera o terminal.
    
 4. Os contêineres serão iniciados e configurados de acordo com o arquivo `docker-compose.yml`.
 
