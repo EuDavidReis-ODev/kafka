@@ -1,4 +1,4 @@
-# Projeto de Exemplo de Microsserviços com Java Spring Boot e Kafka
+# Microsserviços com Java Spring Boot e Kafka
 
 Este projeto de exemplo demonstra a implementação de microsserviços utilizando Java Spring Boot e Kafka. Ele consiste em dois subprojetos: um Producer e um Consumer. O Producer funciona como uma API Rest que recebe requisições e as envia para um tópico no Kafka. O Consumer, por sua vez, coleta os eventos da fila Kafka e os processa conforme necessário.
  Neste projeto também é abordado o uso de containers Docker e do Zookeeper. 
