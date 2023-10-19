@@ -1,6 +1,5 @@
-package com.davidreisodev.apirestkafka.kafkadata;
+package com.davidreisodev.microsservice.kafkadata;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 import lombok.AllArgsConstructor;
@@ -12,6 +11,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class OrderData {
     
-  private List<ProductData> products;
+    private Integer id;
+    
+    private List<ProductData> products;
 
 }
