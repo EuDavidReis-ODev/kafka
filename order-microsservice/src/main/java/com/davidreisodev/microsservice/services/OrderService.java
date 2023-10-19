@@ -22,7 +22,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Service
 @Slf4j
-public class OrderSaveService {
+public class OrderService {
     @Autowired
     private OrderRepository orderRepository;
 
@@ -35,7 +35,7 @@ public class OrderSaveService {
     private static final String SAVE_ORDER = "SALVAR_PEDIDO";
 
     @KafkaListener(topics = SAVE_ORDER, groupId = "microsserviceSalvaPedido")
-    private void execute(ConsumerRecord<String,String> record){
+    private void saveOrder(ConsumerRecord<String,String> record){
        log.info("Key = {}" , record.key());
        log.info("Cabeçalho = {}" , record.headers());
        log.info("Partição  = {}" , record.partition());
