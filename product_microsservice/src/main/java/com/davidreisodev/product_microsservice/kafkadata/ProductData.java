@@ -1,4 +1,4 @@
-package com.davidreisodev.apirestkafka.kafkadata;
+package com.davidreisodev.product_microsservice.kafkadata;
 
 import java.math.BigDecimal;
 

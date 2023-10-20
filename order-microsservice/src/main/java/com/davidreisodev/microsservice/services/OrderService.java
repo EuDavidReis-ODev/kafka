@@ -37,8 +37,8 @@ public class OrderService {
     @KafkaListener(topics = SAVE_ORDER, groupId = "microsserviceSalvaPedido")
     private void saveOrder(ConsumerRecord<String,String> record){
        log.info("Key = {}" , record.key());
-       log.info("Cabeçalho = {}" , record.headers());
-       log.info("Partição  = {}" , record.partition());
+       log.info("Cabecalho = {}" , record.headers());
+       log.info("Particao  = {}" , record.partition());
 
        String data = record.value();
 

@@ -11,7 +11,11 @@ public class EventRegisterService {
     
     private final KafkaTemplate<Object,Object> template;
     
-    public <T> void addEvent(String topic, T data){
+    public <T> void addSaveOrderEvent(String topic, T data){
+        template.send(topic, data);
+    }
+
+    public <T> void addSaveProductEvent(String topic, T data){
         template.send(topic, data);
     }
 }

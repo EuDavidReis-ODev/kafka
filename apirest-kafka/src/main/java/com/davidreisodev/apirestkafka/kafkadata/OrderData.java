@@ -1,6 +1,5 @@
 package com.davidreisodev.apirestkafka.kafkadata;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 import lombok.AllArgsConstructor;
