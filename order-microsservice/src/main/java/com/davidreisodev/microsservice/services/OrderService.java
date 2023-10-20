@@ -13,7 +13,6 @@ import com.davidreisodev.microsservice.kafkadata.ProductData;
 import com.davidreisodev.microsservice.models.OrderModel;
 import com.davidreisodev.microsservice.models.ProductModel;
 import com.davidreisodev.microsservice.repositories.OrderRepository;
-import com.davidreisodev.microsservice.repositories.ProductRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -26,8 +25,6 @@ public class OrderService {
     @Autowired
     private OrderRepository orderRepository;
 
-    @Autowired
-    private ProductRepository productRepository;
 
     /**
      *Representa o nome do tópico de pedido.

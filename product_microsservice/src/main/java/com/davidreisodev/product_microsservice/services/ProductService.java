@@ -1,7 +1,5 @@
 package com.davidreisodev.product_microsservice.services;
 
-import java.util.ArrayList;
-
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
