@@ -10,10 +10,13 @@ O projeto está dividido em duas partes principais:
 1. **Producer:**
    - O Producer é uma aplicação Spring Boot que expõe endpoints REST para receber requisições.
    - Ele envia as requisições para um tópico no Kafka, permitindo que outros serviços consumam esses eventos.
+ Os producers `SALVAR_PRODUTO` e `SALVAR_PEDIDO`, conectam os controllers ao Kafka, adicionando as requisições a fila.
 
 2. **Consumer:**
    - O Consumer é responsável por coletar eventos do tópico Kafka e processá-los de acordo com as necessidades do sistema.
    - Ele demonstra como os microsserviços podem ser usados para processar eventos de forma assíncrona e escalável.
+     
+ Neste projeto, teremos dois consumers em projetos separados, um para gerenciar os pedidos `microsserviceSalvaPedido` e outro para gerenciar o `microsserviceSalvaProduto`, mostrando a capacidade de dividir um projeto monolítico em serviços menores e independentes.
 
 ## Utilização do Docker
 
@@ -21,7 +24,7 @@ Este projeto utiliza Docker para facilitar a execução e gerenciamento dos cont
 
 ### Configuração do Docker
 
-Antes de usar o Docker Compose, certifique-se de ter o Docker e o Docker Compose instalados em seu sistema.
+Antes de usar o Docker Compose, certifique-se de ter o [Docker](https://www.docker.com/get-started/) e o [Docker Compose](https://docs.docker.com/compose/install/standalone/) instalados em seu sistema.
 
 ### Executando com Docker Compose
 
@@ -68,18 +71,64 @@ volumes:
     driver: local
 ```
 
-3. Execute o seguinte comando para iniciar os contêineres:
+2. Execute o seguinte comando para iniciar os contêineres:
    ``` powershell
    docker-compose up -d
    ```
    Note que a flag "-d" libera o terminal.
    
-4. Os contêineres serão iniciados e configurados de acordo com o arquivo `docker-compose.yml`.
+3. Os contêineres serão iniciados e configurados de acordo com o arquivo `docker-compose.yml`.
 
 O arquivo `docker-compose.yml` inclui a configuração de um contêiner Zookeeper. O Zookeeper desempenha um papel fundamental na coordenação e gerenciamento de brokers Kafka, permitindo a escalabilidade e a confiabilidade do sistema. Ele é uma parte essencial da infraestrutura quando se trabalha com Kafka.
 
 Certifique-se de que o Docker e o Docker Compose estejam instalados antes de iniciar os contêineres. Esta configuração facilita a execução do projeto em um ambiente Docker, garantindo a operação suave dos serviços Kafka e do projeto como um todo.
 
+## Iniciar serviços JAVA
+ Voce precisar ter instalado em seu sistema o [Java 21](https://www.oracle.com/br/java/technologies/downloads/) para executar o próximo passo.
+Com os containers Kafka e Zookeeper ativos é hora de executar os serviços Java, dentro do diretório `jars` execute os seguintes comandos:
+```bash
+mvn -jar apirest-kafka-0.0.1-SNAPSHOT
+mvn -jar order-microsservice-0.0.1-SNAPSHOT
+mvn -jar product_microsservice-0.0.1-SNAPSHOT
+```
+
+## Enpoints de acesso.
+ Existem dois endpoints disponíveis, veja os detalhes a seguir:
+
+### Salva produto
+ O primeiro endpoint é o responsável por salvar um produto no banco de dados, através do consumer `SALVAR_PRODUTO`. E pode ser acessado através do caminho:
+```
+localhost:8080/api/salva-produto
+```
+
+Ele recebe um produto no seguinte formato:
+```json
+{
+    "productName" : "Hot-Dog",
+    "productValue" : 16.00    
+}
+```
+
+### Salva pedido
+ O segundo endpoint disponível serve para adivionar um pedido ao banco de dados, através do consumer `SALVAR_PEDIDO`. E pode ser acessado através do caminho:
+```json
+{
+    "products" : [
+        {   "id" : 1,
+            "productName" : "X-Bacon",
+            "productValue" : 19.00
+        },
+        {   "id" : 2,
+            "productName" : "X-Salada",
+            "productValue" : 17.00
+        },
+        {   "id" : 3,
+            "productName" : "Coca-Cola 2L",
+            "productValue" : 10.00
+        }
+    ]
+}
+```
 
 ## Autor
 
